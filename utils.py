@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from datareader import NEW_CLASS_NAMES
 
 
-def plot_training_history(train_losses, val_losses, train_accs, val_accs):
+def plot_training_history(train_losses, val_losses, train_accs, val_accs, save_name='training_history.png'):
     """Plot dan simpan riwayat training/validasi untuk loss dan akurasi."""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
 
@@ -29,12 +29,12 @@ def plot_training_history(train_losses, val_losses, train_accs, val_accs):
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('training_history.png', dpi=300, bbox_inches='tight')
-    print("\nPlot disimpan sebagai 'training_history.png'")
+    plt.savefig(save_name, dpi=300, bbox_inches='tight')
+    print(f"\nPlot disimpan sebagai '{save_name}'")
     plt.show()
 
 
-def visualize_random_val_predictions(model, val_loader, num_classes: int, count: int = 10):
+def visualize_random_val_predictions(model, val_loader, num_classes: int, count: int = 10, save_name='val_predictions.png'):
     """
     Ambil beberapa gambar random dari validation set, lakukan inferensi, dan visualisasikan.
     - Binary (1 logit): tampilkan Pred, Prob (untuk kelas prediksi), dan GT dengan nama kelas.
@@ -188,6 +188,6 @@ def visualize_random_val_predictions(model, val_loader, num_classes: int, count:
             ax.axis('off')
 
     plt.tight_layout()
-    plt.savefig('val_predictions.png', dpi=300, bbox_inches='tight')
-    print("\nVisualisasi prediksi validation disimpan sebagai 'val_predictions.png'")
+    plt.savefig(save_name, dpi=300, bbox_inches='tight')
+    print(f"\nVisualisasi prediksi validation disimpan sebagai '{save_name}'")
     plt.show()
